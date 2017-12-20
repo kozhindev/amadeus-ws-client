@@ -1,16 +1,22 @@
 {
-  "name": "amabnl/amadeus-ws-client",
+  "name": "kozhindev/amadeus-ws-client",
   "type": "library",
-  "description": "SOAP Web Service client library for interacting with the Amadeus GDS through its SOAP interface",
-  "keywords": ["amadeus", "gds", "service", "webservice", "soap", "wsdl", "client", "xml", "travel", "airline", "hotel", "booking", "car", "rental", "offer", "masterpricer"],
+  "description": "Fork of 'amabnl/amadeus-ws-client'. SOAP Web Service client library for interacting with the Amadeus GDS through its SOAP interface",
+  "keywords": ["amadeus", "gds", "service", "webservice", "soap", "wsdl", "client", "xml", "travel", "airline", "hotel", "booking", "car", "rental", "offer", "masterpricer", "cruise"],
   "minimum-stability": "stable",
-  "homepage": "https://github.com/amabnl/amadeus-ws-client",
+  "homepage": "https://github.com/kozhindev/amadeus-ws-client",
   "license": "Apache-2.0",
   "authors": [
     {
       "name": "Dieter Devlieghere",
       "email": "dieter.devlieghere@gmail.com",
       "homepage": "http://dermika.be",
+      "role": "Lead Developer"
+    },
+    {
+      "name": "Aleksandr Bogatikov",
+      "email": "perlexed@gmail.com",
+      "homepage": "http://www.kozhindev.ru/",
       "role": "Lead Developer"
     }
   ],
