@@ -39,6 +39,8 @@ use Amadeus\Client\Result;
  */
 class Client extends Base
 {
+    use CruiseServicesTrait;
+
     /**
      * Amadeus SOAP header version 1
      */
