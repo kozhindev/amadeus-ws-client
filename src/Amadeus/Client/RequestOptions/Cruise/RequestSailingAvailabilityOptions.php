@@ -1,7 +1,9 @@
 <?php
 
-namespace Amadeus\Client\RequestOptions;
+namespace Amadeus\Client\RequestOptions\Cruise;
 
+
+use Amadeus\Client\RequestOptions\Base;
 
 class RequestSailingAvailabilityOptions extends Base
 {

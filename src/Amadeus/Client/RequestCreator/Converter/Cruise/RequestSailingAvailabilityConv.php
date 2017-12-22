@@ -4,7 +4,7 @@ namespace Amadeus\Client\RequestCreator\Converter\Cruise;
 
 
 use Amadeus\Client\RequestCreator\Converter\BaseConverter;
-use Amadeus\Client\RequestOptions\RequestSailingAvailabilityOptions;
+use Amadeus\Client\RequestOptions\Cruise\RequestSailingAvailabilityOptions;
 use Amadeus\Client\Struct\Cruise\RequestSailingAvailability;
 
 class RequestSailingAvailabilityConv extends BaseConverter

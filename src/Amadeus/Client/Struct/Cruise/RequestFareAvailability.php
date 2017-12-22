@@ -3,10 +3,10 @@
 namespace Amadeus\Client\Struct\Cruise;
 
 
-use Amadeus\Client\RequestOptions\Cruise\RequestSailingAvailabilityOptions;
+use Amadeus\Client\RequestOptions\Cruise\RequestFareAvailabilityOptions;
 use Amadeus\Client\Struct\BaseWsMessage;
 
-class RequestSailingAvailability extends BaseWsMessage
+class RequestFareAvailability extends BaseWsMessage
 {
     public $processingInfo;
 
@@ -18,9 +18,9 @@ class RequestSailingAvailability extends BaseWsMessage
     /**
      * Authenticate constructor.
      *
-     * @param RequestSailingAvailabilityOptions $params
+     * @param RequestFareAvailabilityOptions $params
      */
-    public function __construct(RequestSailingAvailabilityOptions $params)
+    public function __construct(RequestFareAvailabilityOptions $params)
     {
         $this->processingInfo = [
             'processingDetails' => [
@@ -39,10 +39,25 @@ class RequestSailingAvailability extends BaseWsMessage
         $this->sailingGroup = [
             'sailingDescription' => [
                 'providerDetails' => [
+                    'shipCode' => $params->shipCode,
                     'cruiselineCode' => $params->cruiseLineCode,
                 ],
                 'sailingDateTime' => [
                     'packageStartDate' => $params->date,
+                    'packageDuration' => $params->duration,
+                ],
+            ],
+            'travellerGroup' => [
+                'passengerInfo' => [
+                    'paxDetails' => [
+                        'surname' => $params->surname,
+                    ],
+                ],
+            ],
+            'currencyInfo' => [
+                'currencyList' => [
+                    'currencyQualifier' => $params->currencyQualifier,
+                    'currencyIsoCode' => $params->currencyIsoCode,
                 ],
             ],
         ];
