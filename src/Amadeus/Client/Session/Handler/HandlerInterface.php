@@ -126,4 +126,12 @@ interface HandlerInterface
      * @return string|null
      */
     public function getLastResponseHeaders($msgName);
+
+    /**
+     * Checks if authentication data exists for stateful SOAP versions
+     * @todo remove when session handler is able to send authentication messages by itself
+     *
+     * @return bool
+     */
+    public function isAuthenticated();
 }

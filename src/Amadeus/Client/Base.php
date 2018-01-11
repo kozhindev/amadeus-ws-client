@@ -44,7 +44,7 @@ class Base
      *
      * @var HandlerInterface
      */
-    protected $sessionHandler;
+    public $sessionHandler;
 
     /**
      * Request Creator is will create the correct message structure to send to the SOAP server.

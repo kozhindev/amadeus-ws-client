@@ -3,21 +3,19 @@
 namespace Amadeus\Client\ResponseHandler\Cruise;
 
 
-use Amadeus\Client\ResponseHandler\StandardResponseHandler;
 use Amadeus\Client\Result;
 use Amadeus\Client\Session\Handler\SendResult;
 
-class HandlerRequestSailingAvailability extends StandardResponseHandler
+class HandlerRequestSailingAvailability extends CruiseResponseHandler
 {
     /**
      * @param SendResult $response
      * @return Result
      */
-    public function analyze(SendResult $response)
+    public function analyzeCruiseResponse(SendResult $response)
     {
         $domDoc = $this->loadDomDocument($response->responseXml);
 
-        // @todo change to proper error detecting
         $sailingGroupNode = $domDoc->getElementsByTagName('sailingGroup')->item(0);
 
         return new Result($response, is_null($sailingGroupNode) ? Result::STATUS_ERROR : Result::STATUS_OK);

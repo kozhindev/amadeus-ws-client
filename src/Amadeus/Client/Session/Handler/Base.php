@@ -459,4 +459,12 @@ abstract class Base implements HandlerInterface, LoggerAwareInterface
 
         return $this->logger->log($level, $message, $context);
     }
+
+    /**
+     * @inheritdoc
+     */
+    public function isAuthenticated()
+    {
+        return $this->isAuthenticated;
+    }
 }
