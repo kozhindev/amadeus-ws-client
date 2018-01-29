@@ -3,43 +3,27 @@
 namespace Amadeus\Client\Struct\Cruise;
 
 
-use Amadeus\Client\RequestOptions\Cruise\RequestCategoryAvailabilityOptions;
+use Amadeus\Client\RequestOptions\Cruise\HoldCabinOptions;
 use Amadeus\Client\Struct\BaseWsMessage;
 
-class RequestCategoryAvailability extends BaseWsMessage
+class HoldCabin extends BaseWsMessage
 {
-    public $processingInfo;
-
     public $numberOfUnitsDescription;
 
     public $sailingGroup;
 
-
     /**
      * Authenticate constructor.
      *
-     * @param RequestCategoryAvailabilityOptions $params
+     * @param HoldCabinOptions $params
      */
-    public function __construct(RequestCategoryAvailabilityOptions $params)
+    public function __construct(HoldCabinOptions $params)
     {
-        $this->processingInfo = [
-            'processingDetails' => [
-                'businessType' => 5,
-                'function' => 56,
-            ],
-        ];
-
         $this->numberOfUnitsDescription = [
             'nbrOfUnitsDetails' => [
-                [
-                    'unitValue' => $params->numberOfUnits,
-                    'unitQualifier' => 'NI',
-                ],
-                [
-                    'unitValue' => 2,
-                    'unitQualifier' => 'PA',
-                ],
-            ]
+                'unitValue' => $params->numberOfUnits,
+                'unitQualifier' => 'NI',
+            ],
         ];
 
         $this->sailingGroup = [
@@ -70,6 +54,19 @@ class RequestCategoryAvailability extends BaseWsMessage
                 'fareCode' => [
                     'fareCodeId' => [
                         'cruiseFareCode' => $params->fareCode,
+                    ],
+                ],
+                'categoryGroup' => [
+                    'categoryInfo' => [
+                        'categoryId' => [
+                            'pricedCategory' => $params->pricedCategory,
+                            'berthedCategory' => $params->berthedCategory,
+                        ],
+                    ],
+                    'cabinInfo' => [
+                        'cabinDetails' => [
+                            'cabinNbr' => $params->cabinNumber,
+                        ],
                     ],
                 ],
             ],

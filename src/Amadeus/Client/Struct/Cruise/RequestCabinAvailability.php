@@ -3,10 +3,10 @@
 namespace Amadeus\Client\Struct\Cruise;
 
 
-use Amadeus\Client\RequestOptions\Cruise\RequestCategoryAvailabilityOptions;
+use Amadeus\Client\RequestOptions\Cruise\RequestCabinAvailabilityOptions;
 use Amadeus\Client\Struct\BaseWsMessage;
 
-class RequestCategoryAvailability extends BaseWsMessage
+class RequestCabinAvailability extends BaseWsMessage
 {
     public $processingInfo;
 
@@ -18,9 +18,9 @@ class RequestCategoryAvailability extends BaseWsMessage
     /**
      * Authenticate constructor.
      *
-     * @param RequestCategoryAvailabilityOptions $params
+     * @param RequestCabinAvailabilityOptions $params
      */
-    public function __construct(RequestCategoryAvailabilityOptions $params)
+    public function __construct(RequestCabinAvailabilityOptions $params)
     {
         $this->processingInfo = [
             'processingDetails' => [
@@ -70,6 +70,14 @@ class RequestCategoryAvailability extends BaseWsMessage
                 'fareCode' => [
                     'fareCodeId' => [
                         'cruiseFareCode' => $params->fareCode,
+                    ],
+                ],
+                'categoryGroup' => [
+                    'categoryInfo' => [
+                        'categoryId' => [
+                            'pricedCategory' => $params->pricedCategory,
+                            'berthedCategory' => $params->berthedCategory,
+                        ],
                     ],
                 ],
             ],

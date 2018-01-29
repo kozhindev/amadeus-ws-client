@@ -4,10 +4,14 @@ namespace Amadeus;
 
 
 use Amadeus\Client\Exception;
+use Amadeus\Client\RequestOptions\Cruise\DisplayCabinDescriptionOptions;
 use Amadeus\Client\RequestOptions\Cruise\DisplayItineraryDescriptionOptions;
+use Amadeus\Client\RequestOptions\Cruise\HoldCabinOptions;
+use Amadeus\Client\RequestOptions\Cruise\RequestCabinAvailabilityOptions;
 use Amadeus\Client\RequestOptions\Cruise\RequestCategoryAvailabilityOptions;
 use Amadeus\Client\RequestOptions\Cruise\RequestSailingAvailabilityOptions;
 use Amadeus\Client\RequestOptions\Cruise\RequestFareAvailabilityOptions;
+use Amadeus\Client\RequestOptions\Cruise\UnholdCabinOptions;
 use Amadeus\Client\Result;
 
 trait CruiseServicesTrait
@@ -68,6 +72,66 @@ trait CruiseServicesTrait
     public function displayItineraryDescription(DisplayItineraryDescriptionOptions $options, $messageOptions = [])
     {
         $msgName = 'Cruise_DisplayItineraryDescription';
+
+        return $this->callMessage($msgName, $options, $messageOptions);
+    }
+
+    /**
+     * @param RequestCabinAvailabilityOptions $options
+     * @param array $messageOptions
+     * @return mixed
+     * @throws Client\InvalidMessageException
+     * @throws Client\RequestCreator\MessageVersionUnsupportedException
+     * @throws Exception
+     */
+    public function requestCabinAvailability(RequestCabinAvailabilityOptions $options, $messageOptions = [])
+    {
+        $msgName = 'Cruise_RequestCabinAvailability';
+
+        return $this->callMessage($msgName, $options, $messageOptions);
+    }
+
+    /**
+     * Cruise_DisplayCabinDescription - get sailing details
+     *
+     * @param DisplayCabinDescriptionOptions $options
+     * @param array [$messageOptions]
+     * @return Result
+     * @throws Exception
+     */
+    public function displayCabinDescription(DisplayCabinDescriptionOptions $options, $messageOptions = [])
+    {
+        $msgName = 'Cruise_DisplayCabinDescription';
+
+        return $this->callMessage($msgName, $options, $messageOptions);
+    }
+
+    /**
+     * Cruise_HoldCabin - get sailing details
+     *
+     * @param HoldCabinOptions $options
+     * @param array [$messageOptions]
+     * @return Result
+     * @throws Exception
+     */
+    public function holdCabin(HoldCabinOptions $options, $messageOptions = [])
+    {
+        $msgName = 'Cruise_HoldCabin';
+
+        return $this->callMessage($msgName, $options, $messageOptions);
+    }
+
+    /**
+     * Cruise_UnholdCabin - get sailing details
+     *
+     * @param UnholdCabinOptions $options
+     * @param array [$messageOptions]
+     * @return Result
+     * @throws Exception
+     */
+    public function unholdCabin(UnholdCabinOptions $options, $messageOptions = [])
+    {
+        $msgName = 'Cruise_UnholdCabin';
 
         return $this->callMessage($msgName, $options, $messageOptions);
     }
