@@ -4,9 +4,8 @@ namespace Amadeus\Client\Struct\Cruise;
 
 
 use Amadeus\Client\RequestOptions\Cruise\RequestFareAvailabilityOptions;
-use Amadeus\Client\Struct\BaseWsMessage;
 
-class RequestFareAvailability extends BaseWsMessage
+class RequestFareAvailability extends BaseCruiseMessage
 {
     public $processingInfo;
 
@@ -22,12 +21,7 @@ class RequestFareAvailability extends BaseWsMessage
      */
     public function __construct(RequestFareAvailabilityOptions $params)
     {
-        $this->processingInfo = [
-            'processingDetails' => [
-                'businessType' => 5,
-                'function' => 56,
-            ],
-        ];
+        $this->processingInfo = static::getProcessingInfo();
 
         $this->numberOfUnitsDescription = [
             'nbrOfUnitsDetails' => [

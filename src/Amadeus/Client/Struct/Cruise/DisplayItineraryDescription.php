@@ -4,9 +4,8 @@ namespace Amadeus\Client\Struct\Cruise;
 
 
 use Amadeus\Client\RequestOptions\Cruise\DisplayItineraryDescriptionOptions;
-use Amadeus\Client\Struct\BaseWsMessage;
 
-class DisplayItineraryDescription extends BaseWsMessage
+class DisplayItineraryDescription extends BaseCruiseMessage
 {
     public $sailingGroup;
 

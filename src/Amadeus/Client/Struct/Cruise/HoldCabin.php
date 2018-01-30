@@ -4,9 +4,8 @@ namespace Amadeus\Client\Struct\Cruise;
 
 
 use Amadeus\Client\RequestOptions\Cruise\HoldCabinOptions;
-use Amadeus\Client\Struct\BaseWsMessage;
 
-class HoldCabin extends BaseWsMessage
+class HoldCabin extends BaseCruiseMessage
 {
     public $numberOfUnitsDescription;
 

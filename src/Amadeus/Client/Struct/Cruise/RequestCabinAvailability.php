@@ -4,9 +4,8 @@ namespace Amadeus\Client\Struct\Cruise;
 
 
 use Amadeus\Client\RequestOptions\Cruise\RequestCabinAvailabilityOptions;
-use Amadeus\Client\Struct\BaseWsMessage;
 
-class RequestCabinAvailability extends BaseWsMessage
+class RequestCabinAvailability extends BaseCruiseMessage
 {
     public $processingInfo;
 
@@ -22,12 +21,7 @@ class RequestCabinAvailability extends BaseWsMessage
      */
     public function __construct(RequestCabinAvailabilityOptions $params)
     {
-        $this->processingInfo = [
-            'processingDetails' => [
-                'businessType' => 5,
-                'function' => 56,
-            ],
-        ];
+        $this->processingInfo = static::getProcessingInfo();
 
         $this->numberOfUnitsDescription = [
             'nbrOfUnitsDetails' => [

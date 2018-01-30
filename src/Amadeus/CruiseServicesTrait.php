@@ -26,9 +26,7 @@ trait CruiseServicesTrait
      */
     public function requestSailingAvailability(RequestSailingAvailabilityOptions $options, $messageOptions = [])
     {
-        $msgName = 'Cruise_RequestSailingAvailability';
-
-        return $this->callMessage($msgName, $options, $messageOptions);
+        return $this->callMessage('Cruise_RequestSailingAvailability', $options, $messageOptions);
     }
 
     /**
@@ -41,9 +39,7 @@ trait CruiseServicesTrait
      */
     public function requestFareAvailability(RequestFareAvailabilityOptions $options, $messageOptions = [])
     {
-        $msgName = 'Cruise_RequestFareAvailability';
-
-        return $this->callMessage($msgName, $options, $messageOptions);
+        return $this->callMessage('Cruise_RequestFareAvailability', $options, $messageOptions);
     }
 
     /**
@@ -56,9 +52,7 @@ trait CruiseServicesTrait
      */
     public function requestCategoryAvailability(RequestCategoryAvailabilityOptions $options, $messageOptions = [])
     {
-        $msgName = 'Cruise_RequestCategoryAvailability';
-
-        return $this->callMessage($msgName, $options, $messageOptions);
+        return $this->callMessage('Cruise_RequestCategoryAvailability', $options, $messageOptions);
     }
 
     /**
@@ -71,9 +65,7 @@ trait CruiseServicesTrait
      */
     public function displayItineraryDescription(DisplayItineraryDescriptionOptions $options, $messageOptions = [])
     {
-        $msgName = 'Cruise_DisplayItineraryDescription';
-
-        return $this->callMessage($msgName, $options, $messageOptions);
+        return $this->callMessage('Cruise_DisplayItineraryDescription', $options, $messageOptions);
     }
 
     /**
@@ -86,9 +78,7 @@ trait CruiseServicesTrait
      */
     public function requestCabinAvailability(RequestCabinAvailabilityOptions $options, $messageOptions = [])
     {
-        $msgName = 'Cruise_RequestCabinAvailability';
-
-        return $this->callMessage($msgName, $options, $messageOptions);
+        return $this->callMessage('Cruise_RequestCabinAvailability', $options, $messageOptions);
     }
 
     /**
@@ -101,9 +91,7 @@ trait CruiseServicesTrait
      */
     public function displayCabinDescription(DisplayCabinDescriptionOptions $options, $messageOptions = [])
     {
-        $msgName = 'Cruise_DisplayCabinDescription';
-
-        return $this->callMessage($msgName, $options, $messageOptions);
+        return $this->callMessage('Cruise_DisplayCabinDescription', $options, $messageOptions);
     }
 
     /**
@@ -116,9 +104,7 @@ trait CruiseServicesTrait
      */
     public function holdCabin(HoldCabinOptions $options, $messageOptions = [])
     {
-        $msgName = 'Cruise_HoldCabin';
-
-        return $this->callMessage($msgName, $options, $messageOptions);
+        return $this->callMessage('Cruise_HoldCabin', $options, $messageOptions);
     }
 
     /**
@@ -131,8 +117,6 @@ trait CruiseServicesTrait
      */
     public function unholdCabin(UnholdCabinOptions $options, $messageOptions = [])
     {
-        $msgName = 'Cruise_UnholdCabin';
-
-        return $this->callMessage($msgName, $options, $messageOptions);
+        return $this->callMessage('Cruise_UnholdCabin', $options, $messageOptions);
     }
 }

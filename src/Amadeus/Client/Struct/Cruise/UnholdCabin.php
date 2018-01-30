@@ -4,9 +4,8 @@ namespace Amadeus\Client\Struct\Cruise;
 
 
 use Amadeus\Client\RequestOptions\Cruise\UnholdCabinOptions;
-use Amadeus\Client\Struct\BaseWsMessage;
 
-class UnholdCabin extends BaseWsMessage
+class UnholdCabin extends BaseCruiseMessage
 {
     public $processingInfo;
 

@@ -4,9 +4,8 @@ namespace Amadeus\Client\Struct\Cruise;
 
 
 use Amadeus\Client\RequestOptions\Cruise\DisplayCabinDescriptionOptions;
-use Amadeus\Client\Struct\BaseWsMessage;
 
-class DisplayCabinDescription extends BaseWsMessage
+class DisplayCabinDescription extends BaseCruiseMessage
 {
     public $sailingGroup;
 
