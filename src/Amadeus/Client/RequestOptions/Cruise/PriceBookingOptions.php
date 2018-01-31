@@ -40,6 +40,4 @@ class PriceBookingOptions extends Base
     public $cabinNumber;
 
     public $travellerLastName;
-
-    public $cruiseFareCode;
 }
