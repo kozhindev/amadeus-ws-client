@@ -3,23 +3,14 @@
 namespace Amadeus\Client\ResponseHandler\Cruise;
 
 
-use Amadeus\Client\Result;
-use Amadeus\Client\Session\Handler\SendResult;
-
 class HandlerDisplayItineraryDescription extends CruiseResponseHandler
 {
     /**
-     * @param SendResult $response
-     * @return Result
+     * @param \DOMDocument $domDocument
+     * @return bool
      */
-    public function analyzeCruiseResponse(SendResult $response)
+    public function isResponseCorrect(\DOMDocument $domDocument)
     {
-        $domDoc = $this->loadDomDocument($response->responseXml);
-
-        // Considering response correct if there are at least one 'locationGroup' node in the response
-        $ifLocationsExist = $domDoc->getElementsByTagName('locationGroup')->length;
-
-        return new Result($response, $ifLocationsExist ? Result::STATUS_OK : Result::STATUS_ERROR);
+        return (bool) $domDocument->getElementsByTagName('locationGroup')->length;
     }
-
 }

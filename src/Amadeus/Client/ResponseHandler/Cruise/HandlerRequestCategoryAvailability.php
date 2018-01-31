@@ -3,22 +3,14 @@
 namespace Amadeus\Client\ResponseHandler\Cruise;
 
 
-use Amadeus\Client\Result;
-use Amadeus\Client\Session\Handler\SendResult;
-
 class HandlerRequestCategoryAvailability extends CruiseResponseHandler
 {
     /**
-     * @param SendResult $response
-     * @return Result
+     * @param \DOMDocument $domDocument
+     * @return bool
      */
-    public function analyzeCruiseResponse(SendResult $response)
+    public function isResponseCorrect(\DOMDocument $domDocument)
     {
-        $domDoc = $this->loadDomDocument($response->responseXml);
-
-        $ifCategoryExists = !!$domDoc->getElementsByTagName('categoryGroup')->length;
-
-        return new Result($response, $ifCategoryExists ? Result::STATUS_OK : Result::STATUS_ERROR);
+        return (bool) $domDocument->getElementsByTagName('categoryGroup')->length;
     }
-
 }

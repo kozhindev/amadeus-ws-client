@@ -7,6 +7,7 @@ use Amadeus\Client\Exception;
 use Amadeus\Client\RequestOptions\Cruise\DisplayCabinDescriptionOptions;
 use Amadeus\Client\RequestOptions\Cruise\DisplayItineraryDescriptionOptions;
 use Amadeus\Client\RequestOptions\Cruise\HoldCabinOptions;
+use Amadeus\Client\RequestOptions\Cruise\PriceBookingOptions;
 use Amadeus\Client\RequestOptions\Cruise\RequestCabinAvailabilityOptions;
 use Amadeus\Client\RequestOptions\Cruise\RequestCategoryAvailabilityOptions;
 use Amadeus\Client\RequestOptions\Cruise\RequestSailingAvailabilityOptions;
@@ -95,7 +96,7 @@ trait CruiseServicesTrait
     }
 
     /**
-     * Cruise_HoldCabin - get sailing details
+     * Cruise_HoldCabin - hold cabin and hide it from the displayCabinDescription results
      *
      * @param HoldCabinOptions $options
      * @param array [$messageOptions]
@@ -108,7 +109,7 @@ trait CruiseServicesTrait
     }
 
     /**
-     * Cruise_UnholdCabin - get sailing details
+     * Cruise_UnholdCabin - release the holded cabin
      *
      * @param UnholdCabinOptions $options
      * @param array [$messageOptions]
@@ -118,5 +119,18 @@ trait CruiseServicesTrait
     public function unholdCabin(UnholdCabinOptions $options, $messageOptions = [])
     {
         return $this->callMessage('Cruise_UnholdCabin', $options, $messageOptions);
+    }
+
+    /**
+     * Cruise_PriceBooking - get booking prices for the cabin
+     *
+     * @param PriceBookingOptions $options
+     * @param array [$messageOptions]
+     * @return Result
+     * @throws Exception
+     */
+    public function priceBooking(PriceBookingOptions $options, $messageOptions = [])
+    {
+        return $this->callMessage('Cruise_PriceBooking', $options, $messageOptions);
     }
 }

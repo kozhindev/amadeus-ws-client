@@ -9,16 +9,11 @@ use Amadeus\Client\Session\Handler\SendResult;
 class HandlerRequestSailingAvailability extends CruiseResponseHandler
 {
     /**
-     * @param SendResult $response
-     * @return Result
+     * @param \DOMDocument $domDocument
+     * @return bool
      */
-    public function analyzeCruiseResponse(SendResult $response)
+    public function isResponseCorrect(\DOMDocument $domDocument)
     {
-        $domDoc = $this->loadDomDocument($response->responseXml);
-
-        $sailingGroupNode = $domDoc->getElementsByTagName('sailingGroup')->item(0);
-
-        return new Result($response, is_null($sailingGroupNode) ? Result::STATUS_ERROR : Result::STATUS_OK);
+        return (bool) $domDocument->getElementsByTagName('sailingGroup')->length;
     }
-
 }

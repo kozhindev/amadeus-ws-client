@@ -3,7 +3,7 @@
 namespace Amadeus\Client\ResponseHandler\Cruise;
 
 
-class HandlerHoldCabin extends CruiseResponseHandler
+class HandlerPriceBooking extends CruiseResponseHandler
 {
     /**
      * @param \DOMDocument $domDocument
@@ -11,6 +11,6 @@ class HandlerHoldCabin extends CruiseResponseHandler
      */
     public function isResponseCorrect(\DOMDocument $domDocument)
     {
-        return (bool) $domDocument->getElementsByTagName('cabinGroup')->length;
+        return (bool) $domDocument->getElementsByTagName('pricingGroup')->length;
     }
 }

@@ -14,11 +14,14 @@ abstract class CruiseResponseHandler extends StandardResponseHandler
      *
      * @param SendResult $response
      * @return Result
+     * @throws \Amadeus\Client\Exception
      */
     public function analyze(SendResult $response)
     {
-        return $this->analyzeCruiseResponse($response);
+        $domDoc = $this->loadDomDocument($response->responseXml);
+
+        return new Result($response, $this->isResponseCorrect($domDoc) ? Result::STATUS_OK : Result::STATUS_ERROR);
     }
 
-    abstract public function analyzeCruiseResponse(SendResult $response);
+    abstract public function isResponseCorrect(\DOMDocument $domDocument);
 }
