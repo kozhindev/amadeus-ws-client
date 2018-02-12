@@ -111,26 +111,26 @@ class CreateBooking extends BaseCruiseMessage
                         'expirationDate' => $params->passportExpirationDate,
                     ]
                 ],
-            ],
-            'birthDate' => [
-                'dateTimeDescription' => [
-                    'dateTimeQualifier' => 'BIR',
-                    'dateTimeDetails' => $params->birthDate,
+                'birthDate' => [
+                    'dateTimeDescription' => [
+                        'dateTimeQualifier' => 'BIR',
+                        'dateTimeDetails' => $params->birthDate,
+                    ],
                 ],
-            ],
-            'addressInfo' => [
-                'addressQualifier' => [
-                    'address' => 'PAX',
+                'addressInfo' => [
+                    'addressQualifier' => [
+                        'address' => 'PAX',
+                    ],
+                    'addressDetails' => [
+                        'addressLine1' => $params->addressLine1,
+                        'addressLine2' => $params->addressLine2,
+                    ],
+                    'cityName' => $params->addressCity,
                 ],
-                'addressDetails' => [
-                    'addressLine1' => $params->addressLine1,
-                    'addressLine2' => $params->addressLine2,
-                ],
-                'cityName' => $params->addressCity,
-            ],
-            'fareCode' => [
-                'fareCodeId' => [
-                    'cruiseFareCode' => $params->fareCode,
+                'fareCode' => [
+                    'fareCodeId' => [
+                        'cruiseFareCode' => $params->fareCode,
+                    ],
                 ],
             ],
         ];
@@ -153,7 +153,7 @@ class CreateBooking extends BaseCruiseMessage
             'insuranceInfo' => [
                 'insuranceList' => array_map(function($code) {
                     return [
-                        'code' => $code,
+                        'insuranceCode' => $code,
                     ];
                 }, $params->insuranceCodes),
             ],
@@ -163,7 +163,6 @@ class CreateBooking extends BaseCruiseMessage
                 ],
             ],
         ];
-
     }
 
 }
