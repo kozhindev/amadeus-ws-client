@@ -4,6 +4,7 @@ namespace Amadeus;
 
 
 use Amadeus\Client\Exception;
+use Amadeus\Client\RequestOptions\Cruise\CreateBookingOptions;
 use Amadeus\Client\RequestOptions\Cruise\DisplayCabinDescriptionOptions;
 use Amadeus\Client\RequestOptions\Cruise\DisplayItineraryDescriptionOptions;
 use Amadeus\Client\RequestOptions\Cruise\HoldCabinOptions;
@@ -132,5 +133,18 @@ trait CruiseServicesTrait
     public function priceBooking(PriceBookingOptions $options, $messageOptions = [])
     {
         return $this->callMessage('Cruise_PriceBooking', $options, $messageOptions);
+    }
+
+    /**
+     * Cruise_CreateBooking - create a cruise booking in both the Cruise Line system inventory and the Amadeus central system
+     *
+     * @param CreateBookingOptions $options
+     * @param array [$messageOptions]
+     * @return Result
+     * @throws Exception
+     */
+    public function createBooking(CreateBookingOptions $options, $messageOptions = [])
+    {
+        return $this->callMessage('Cruise_CreateBooking', $options, $messageOptions);
     }
 }
