@@ -29,15 +29,13 @@ class DisplayCabinDescription extends BaseCruiseMessage
             ],
             'categoryGroup' => [
                 'categoryInfo' => [
-                    [
-                        'categoryId' => [
-                            'berthedCategory' => $params->pricedCategory,
-                        ],
+                    'categoryId' => [
+                        'berthedCategory' => $params->pricedCategory,
                     ],
-                    [
-                        'categoryId' => [
-                            'cabinNbr' => $params->cabinNumber,
-                        ],
+                ],
+                'cabinInfo' => [
+                    'cabinDetails' => [
+                        'cabinNbr' => $params->cabinNumber,
                     ],
                 ],
             ],

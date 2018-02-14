@@ -20,6 +20,8 @@ class CreateBooking extends BaseCruiseMessage
      */
     public function __construct(CreateBookingOptions $params)
     {
+        $referenceNbr = 1;
+
         $this->contactInfo = [
             'contactDetails' => [
                 'partyQualifierType' => 'AGT',
@@ -69,12 +71,16 @@ class CreateBooking extends BaseCruiseMessage
             ],
             'categoryInfo' => [
                 'categoryId' => [
+                    'pricedCategory' => $params->berthedCategory,
                     'berthedCategory' => $params->berthedCategory,
                 ],
             ],
             'cabinInfo' => [
                 'cabinDetails' => [
                     'cabinNbr' => $params->cabinNumber,
+                ],
+                'bedDetails' => [
+                    'bedConfiguration' => 'NO',
                 ],
             ],
             'travellerGroup' => [
@@ -85,7 +91,7 @@ class CreateBooking extends BaseCruiseMessage
                     ],
                     'travellerDetails' => [
                         'nameId' => $params->firstName,
-                        'referenceNbr' => 1,
+                        'referenceNbr' => $referenceNbr,
                         'passengerTitle' => $params->passengerTitle,
                         'passengerGender' => $params->passengerGender,
                         'middleName' => $params->middleName,
@@ -141,10 +147,10 @@ class CreateBooking extends BaseCruiseMessage
                     'diningLabel' => $params->diningLabel,
                     'diningStatus' => $params->diningStatus,
                 ],
-                'diningAssociation' => [
-                    'travellerId' => [
-                        'lastName' => $params->lastName,
-                    ],
+            ],
+            'diningAssociation' => [
+                'travellerId' => [
+                    'lastName' => $referenceNbr,
                 ],
             ],
         ];
@@ -159,7 +165,7 @@ class CreateBooking extends BaseCruiseMessage
             ],
             'insuranceAssociation' => [
                 'travellerId' => [
-                    'lastName' => $params->lastName,
+                    'lastName' => $referenceNbr,
                 ],
             ],
         ];
