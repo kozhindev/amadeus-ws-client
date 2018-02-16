@@ -147,4 +147,57 @@ trait CruiseServicesTrait
     {
         return $this->callMessage('Cruise_CreateBooking', $options, $messageOptions);
     }
+
+    /**
+     * Cruise_GetBookingDetails - This service gets the details of a booking from a cruise line.
+     * All of the information stored by the cruise line is returned, whether or not the information may be modified.
+     *
+     * @param GetBookingDetailsOptions $options
+     * @param array [$messageOptions]
+     * @return Result
+     * @throws Exception
+     */
+    public function getBookingDetails(GetBookingDetailsOptions $options, $messageOptions = [])
+    {
+        return $this->callMessage('Cruise_GetBookingDetails', $options, $messageOptions);
+    }
+
+    /**
+     * Cruise_ModifyBooking - used to modify a cruise booking in both the Cruise Line system inventory and the Amadeus Central System.
+     *
+     * @param ModifyBookingOptions $options
+     * @param array [$messageOptions]
+     * @return Result
+     * @throws Exception
+     */
+    public function modifyBooking(ModifyBookingOptions $options, $messageOptions = [])
+    {
+        return $this->callMessage('Cruise_ModifyBooking', $options, $messageOptions);
+    }
+
+    /**
+     * Cruise_CancelBooking - used to cancel a cruise booking in a cruise line’s system and in the Amadeus Central System.
+     *
+     * @param CancelBookingOptions $options
+     * @param array [$messageOptions]
+     * @return Result
+     * @throws Exception
+     */
+    public function cancelBooking(CancelBookingOptions $options, $messageOptions = [])
+    {
+        return $this->callMessage('Cruise_CancelBooking', $options, $messageOptions);
+    }
+
+    /**
+     * Cruise_PriceBookingCancellation - The customer wishes to get a pricing for the cancellation of the booking and check possible cancellation fees.
+     *
+     * @param PriceBookingCancellationOptions $options
+     * @param array [$messageOptions]
+     * @return Result
+     * @throws Exception
+     */
+    public function priceBookingCancellation(PriceBookingCancellationOptions $options, $messageOptions = [])
+    {
+        return $this->callMessage('Cruise_PriceBookingCancellation', $options, $messageOptions);
+    }
 }
