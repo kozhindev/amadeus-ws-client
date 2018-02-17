@@ -5,9 +5,10 @@ namespace Amadeus\Client\Struct\Cruise;
 
 use Amadeus\Client\RequestOptions\Cruise\ModifyBookingOptions;
 
-class ModifyBooking extends BaseCruiseMessage
+class ModifyBooking extends CreateBooking
 {
-    public $sailingGroup;
+    public $bookingReference;
+    public $deletedGuestList;
 
     /**
      * Authenticate constructor.
@@ -16,7 +17,30 @@ class ModifyBooking extends BaseCruiseMessage
      */
     public function __construct(ModifyBookingOptions $params)
     {
-        $this->sailingGroup = [
+        parent::__construct($params);
+
+        $this->bookingReference = [
+            'referenceType' => $params->referenceType,
+            'uniqueReference' => $params->uniqueReference,
+        ];
+
+        $this->deletedGuestList = array_map(function($referenceNumber) {
+            return [
+                'travellerId' => [
+                    'lastName' => $referenceNumber,
+                    'status' => 'D',
+                ],
+            ];
+        }, $params->deletedGuestsReferenceNumber);
+
+        $this->bookingQualifier = [
+            $this->bookingQualifier,
+            [
+                'partyQualifier' => 1,
+                'itemDescription' => [
+                    'value' => $params->recordLocator,
+                ],
+            ]
         ];
     }
 

@@ -2,8 +2,19 @@
 
 namespace Amadeus\Client\RequestOptions\Cruise;
 
-use Amadeus\Client\RequestOptions\Base;
-
-class ModifyBookingOptions extends Base
+class ModifyBookingOptions extends CreateBookingOptions
 {
+    /**
+     * Amadeus Record Locator for PNR
+     * @var string
+     */
+    public $recordLocator;
+
+    /**
+     * @var integer[]
+     */
+    public $deletedGuestsReferenceNumber = [];
+
+    public $referenceType;
+    public $uniqueReference;
 }

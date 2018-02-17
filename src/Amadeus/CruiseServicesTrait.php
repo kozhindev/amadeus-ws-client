@@ -4,10 +4,14 @@ namespace Amadeus;
 
 
 use Amadeus\Client\Exception;
+use Amadeus\Client\RequestOptions\Cruise\CancelBookingOptions;
 use Amadeus\Client\RequestOptions\Cruise\CreateBookingOptions;
 use Amadeus\Client\RequestOptions\Cruise\DisplayCabinDescriptionOptions;
 use Amadeus\Client\RequestOptions\Cruise\DisplayItineraryDescriptionOptions;
+use Amadeus\Client\RequestOptions\Cruise\GetBookingDetailsOptions;
 use Amadeus\Client\RequestOptions\Cruise\HoldCabinOptions;
+use Amadeus\Client\RequestOptions\Cruise\ModifyBookingOptions;
+use Amadeus\Client\RequestOptions\Cruise\PriceBookingCancellationOptions;
 use Amadeus\Client\RequestOptions\Cruise\PriceBookingOptions;
 use Amadeus\Client\RequestOptions\Cruise\RequestCabinAvailabilityOptions;
 use Amadeus\Client\RequestOptions\Cruise\RequestCategoryAvailabilityOptions;
