@@ -23,6 +23,7 @@
 namespace Amadeus\Client\Session\Handler;
 
 use Amadeus\Client;
+use Amadeus\Client\Util\SomewhatRandomGenerator;
 
 /**
  * SoapHeader4: Session Handler for web service applications using Amadeus WS Soap Header v4.
@@ -217,21 +218,16 @@ class SoapHeader4 extends Base
 
         //Send authentication info
         if ($this->isAuthenticated === false) {
-            //Generate nonce, msg creation string & password digest:
-            $password = base64_decode($params->authParams->passwordData);
-            $creation = new \DateTime('now', new \DateTimeZone('UTC'));
-            $t = microtime(true);
-            $micro = sprintf("%03d", ($t - floor($t)) * 1000);
-            $creationString = $this->createDateTimeStringForAuth($creation, $micro);
-            $messageNonce = $this->generateUniqueNonce($params->authParams->nonceBase, $creationString);
-            $encodedNonce = base64_encode($messageNonce);
-            $digest = $this->generatePasswordDigest($password, $creationString, $messageNonce);
+            $authHeaderData = static::getAuthHeaderData(
+                base64_decode($params->authParams->passwordData),
+                $params->authParams->nonceBase
+            );
 
             $securityHeaderXml = $this->generateSecurityHeaderRawXml(
                 $params->authParams->userId,
-                $encodedNonce,
-                $digest,
-                $creationString
+                $authHeaderData['encodedNonce'],
+                $authHeaderData['passwordDigest'],
+                $authHeaderData['timestamp']
             );
 
             //Authentication header
@@ -293,6 +289,34 @@ class SoapHeader4 extends Base
         }
 
         return $headersToSet;
+    }
+
+    /**
+     * Generate nonce, msg creation string & password digest
+     *
+     * @param $password
+     * @param null $nonceBase
+     * @return array
+     */
+    public static function getAuthHeaderData($password, $nonceBase = null)
+    {
+        if ($nonceBase === null) {
+            $nonceBase = SomewhatRandomGenerator::generateSomewhatRandomString();
+        }
+
+        $creation = new \DateTime('now', new \DateTimeZone('UTC'));
+        $t = microtime(true);
+        $micro = sprintf("%03d", ($t - floor($t)) * 1000);
+        $creationString = static::createDateTimeStringForAuth($creation, $micro);
+        $messageNonce = static::generateUniqueNonce($nonceBase, $creationString);
+        $encodedNonce = base64_encode($messageNonce);
+        $digest = static::generatePasswordDigest($password, $creationString, $messageNonce);
+
+        return array(
+            'passwordDigest' => $digest,
+            'timestamp' => $creationString,
+            'encodedNonce' => $encodedNonce,
+        );
     }
 
     /**
@@ -376,7 +400,7 @@ class SoapHeader4 extends Base
      * @param string $creationString
      * @return string
      */
-    protected function generateUniqueNonce($nonceBase, $creationString)
+    protected static function generateUniqueNonce($nonceBase, $creationString)
     {
         return substr(
             sha1(
@@ -407,7 +431,7 @@ class SoapHeader4 extends Base
      * @param string $messageNonce Random unique string
      * @return string The generated Password Digest
      */
-    protected function generatePasswordDigest($password, $creationString, $messageNonce)
+    protected static function generatePasswordDigest($password, $creationString, $messageNonce)
     {
         $shaPassword = hex2bin(strtoupper(sha1($password)));
         $passwordFusion = hex2bin(strtoupper(sha1($messageNonce . $creationString . $shaPassword)));
@@ -420,7 +444,7 @@ class SoapHeader4 extends Base
      * @param string $micro
      * @return string
      */
-    protected function createDateTimeStringForAuth($creationDateTime, $micro)
+    protected static function createDateTimeStringForAuth($creationDateTime, $micro)
     {
         $creationDateTime->setTimezone(new \DateTimeZone('UTC'));
         return $creationDateTime->format("Y-m-d\TH:i:s:") . $micro . 'Z';
