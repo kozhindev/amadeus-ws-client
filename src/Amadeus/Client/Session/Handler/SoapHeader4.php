@@ -409,7 +409,10 @@ class SoapHeader4 extends Base
      */
     protected function generatePasswordDigest($password, $creationString, $messageNonce)
     {
-        return base64_encode(sha1($messageNonce . $creationString . sha1($password, true), true));
+        $shaPassword = hex2bin(strtoupper(sha1($password)));
+        $passwordFusion = hex2bin(strtoupper(sha1($messageNonce . $creationString . $shaPassword)));
+
+        return base64_encode($passwordFusion);
     }
 
     /**
