@@ -18,6 +18,8 @@ class UnholdCabin extends BaseCruiseMessage
      */
     public function __construct(UnholdCabinOptions $params)
     {
+        parent::__construct($params);
+
         $this->processingInfo = [
             'processingDetails' => [
                 'businessType' => 5,

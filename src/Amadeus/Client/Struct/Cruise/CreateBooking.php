@@ -20,6 +20,8 @@ class CreateBooking extends BaseCruiseMessage
      */
     public function __construct(CreateBookingOptions $params)
     {
+        parent::__construct($params);
+
         $referenceNbr = 1;
 
         $this->contactInfo = [

@@ -21,6 +21,8 @@ class RequestSailingAvailability extends BaseCruiseMessage
      */
     public function __construct(RequestSailingAvailabilityOptions $params)
     {
+        parent::__construct($params);
+
         $this->processingInfo = static::getProcessingInfo();
 
         $this->numberOfUnitsDescription = [

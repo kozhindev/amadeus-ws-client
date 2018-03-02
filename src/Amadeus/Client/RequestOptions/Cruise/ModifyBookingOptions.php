@@ -17,4 +17,5 @@ class ModifyBookingOptions extends CreateBookingOptions
 
     public $referenceType;
     public $uniqueReference;
+    public $agentTermialId;
 }

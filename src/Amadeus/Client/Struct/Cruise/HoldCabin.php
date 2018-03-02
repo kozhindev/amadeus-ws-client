@@ -18,6 +18,8 @@ class HoldCabin extends BaseCruiseMessage
      */
     public function __construct(HoldCabinOptions $params)
     {
+        parent::__construct($params);
+
         $this->numberOfUnitsDescription = [
             'nbrOfUnitsDetails' => [
                 'unitValue' => $params->numberOfUnits,

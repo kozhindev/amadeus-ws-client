@@ -3,9 +3,9 @@
 namespace Amadeus\Client\RequestOptions\Cruise;
 
 
-use Amadeus\Client\RequestOptions\Base;
+use Amadeus\Client\RequestOptions\CruiseBaseOptions;
 
-class RequestFareAvailabilityOptions extends Base
+class RequestFareAvailabilityOptions extends CruiseBaseOptions
 {
     public $cruiseLineCode;
 

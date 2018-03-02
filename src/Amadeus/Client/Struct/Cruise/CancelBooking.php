@@ -18,6 +18,8 @@ class CancelBooking extends BaseCruiseMessage
      */
     public function __construct(CancelBookingOptions $params)
     {
+        parent::__construct($params);
+
         $this->bookingReference = [
             'referenceType' => $params->referenceType,
             'uniqueReference' => $params->uniqueReference,

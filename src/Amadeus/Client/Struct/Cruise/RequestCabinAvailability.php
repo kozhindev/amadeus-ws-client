@@ -21,6 +21,8 @@ class RequestCabinAvailability extends BaseCruiseMessage
      */
     public function __construct(RequestCabinAvailabilityOptions $params)
     {
+        parent::__construct($params);
+
         $this->processingInfo = static::getProcessingInfo();
 
         $this->numberOfUnitsDescription = [

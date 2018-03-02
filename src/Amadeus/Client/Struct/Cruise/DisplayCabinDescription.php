@@ -16,6 +16,8 @@ class DisplayCabinDescription extends BaseCruiseMessage
      */
     public function __construct(DisplayCabinDescriptionOptions $params)
     {
+        parent::__construct($params);
+
         $this->sailingGroup = [
             'sailingDescription' => [
                 'providerDetails' => [

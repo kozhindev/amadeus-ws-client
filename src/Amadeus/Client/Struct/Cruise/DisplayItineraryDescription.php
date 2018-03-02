@@ -16,6 +16,8 @@ class DisplayItineraryDescription extends BaseCruiseMessage
      */
     public function __construct(DisplayItineraryDescriptionOptions $params)
     {
+        parent::__construct($params);
+
         $this->sailingGroup = [
             'sailingDescription' => [
                 'providerDetails' => [

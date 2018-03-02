@@ -2,9 +2,9 @@
 
 namespace Amadeus\Client\RequestOptions\Cruise;
 
-use Amadeus\Client\RequestOptions\Base;
+use Amadeus\Client\RequestOptions\CruiseBaseOptions;
 
-class PriceBookingCancellationOptions extends Base
+class PriceBookingCancellationOptions extends CruiseBaseOptions
 {
     public $cruiseLineCode;
 

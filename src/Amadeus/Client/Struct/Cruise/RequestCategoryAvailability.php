@@ -21,6 +21,8 @@ class RequestCategoryAvailability extends BaseCruiseMessage
      */
     public function __construct(RequestCategoryAvailabilityOptions $params)
     {
+        parent::__construct($params);
+
         $this->processingInfo = static::getProcessingInfo();
 
         $this->numberOfUnitsDescription = [

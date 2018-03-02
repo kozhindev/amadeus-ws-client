@@ -2,9 +2,9 @@
 
 namespace Amadeus\Client\RequestOptions\Cruise;
 
-use Amadeus\Client\RequestOptions\Base;
+use Amadeus\Client\RequestOptions\CruiseBaseOptions;
 
-class CancelBookingOptions extends Base
+class CancelBookingOptions extends CruiseBaseOptions
 {
     /**
      * Amadeus Record Locator for PNR

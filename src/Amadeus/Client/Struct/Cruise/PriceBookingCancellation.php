@@ -17,6 +17,8 @@ class PriceBookingCancellation extends BaseCruiseMessage
      */
     public function __construct(PriceBookingCancellationOptions $params)
     {
+        parent::__construct($params);
+
         $this->bookingQualifier = [
             'partyQualifier' => 1,
             'itemDescription' => [
