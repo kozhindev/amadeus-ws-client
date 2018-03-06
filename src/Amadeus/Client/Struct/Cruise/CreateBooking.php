@@ -22,8 +22,6 @@ class CreateBooking extends BaseCruiseMessage
     {
         parent::__construct($params);
 
-        $referenceNbr = 1;
-
         $this->contactInfo = [
             'contactDetails' => [
                 'partyQualifierType' => 'AGT',
@@ -85,62 +83,64 @@ class CreateBooking extends BaseCruiseMessage
                     'bedConfiguration' => 'NO',
                 ],
             ],
-            'travellerGroup' => [
-                'passengerInfo' => [
-                    'travellerId' => [
-                        'lastName' => $params->lastName,
-                        'status' => 'A',
+            'travellerGroup' => array_map(function($traveller) use ($params) {
+                return [
+                    'passengerInfo' => [
+                        'travellerId' => [
+                            'lastName' => $traveller->lastName,
+                            'status' => 'A',
+                        ],
+                        'travellerDetails' => [
+                            'nameId' => $traveller->firstName,
+                            'referenceNbr' => $traveller->referenceNbr,
+                            'passengerTitle' => $traveller->passengerTitle,
+                            'passengerGender' => $traveller->passengerGender,
+                            'middleName' => $traveller->middleName,
+                        ],
                     ],
-                    'travellerDetails' => [
-                        'nameId' => $params->firstName,
-                        'referenceNbr' => $referenceNbr,
-                        'passengerTitle' => $params->passengerTitle,
-                        'passengerGender' => $params->passengerGender,
-                        'middleName' => $params->middleName,
+                    'modeOfTransportation' => [
+                        'transportationInfo' => [
+                            'modeOfTransport' => $traveller->modeOfTransportCode,
+                            'motCity' => $traveller->modeOfTransportCity,
+                        ],
+                        'motStatus' => $traveller->modeOfTransportStatus,
                     ],
-                ],
-                'modeOfTransportation' => [
-                    'transportationInfo' => [
-                        'modeOfTransport' => $params->modeOfTransportCode,
-                        'motCity' => $params->modeOfTransportCity,
+                    'documentInfo' => [
+                        'travellerDocumentDetails' => [
+                            'documentCode' => 39,
+                            'documentNbr' => $traveller->passportNumber,
+                            'issuanceCountry' => $traveller->issuanceCountry,
+                            'nationality' => $traveller->nationalityCountry,
+                            'birthcountry' => $traveller->birthCountry,
+                        ],
+                        'issueDate' => [
+                            'issueDate' => $traveller->passportIssueDate,
+                            'expirationDate' => $traveller->passportExpirationDate,
+                        ]
                     ],
-                    'motStatus' => $params->modeOfTransportStatus,
-                ],
-                'documentInfo' => [
-                    'travellerDocumentDetails' => [
-                        'documentCode' => 39,
-                        'documentNbr' => $params->passportNumber,
-                        'issuanceCountry' => $params->issuanceCountry,
-                        'nationality' => $params->nationalityCountry,
-                        'birthcountry' => $params->birthCountry,
+                    'birthDate' => [
+                        'dateTimeDescription' => [
+                            'dateTimeQualifier' => 'BIR',
+                            'dateTimeDetails' => $traveller->birthDate,
+                        ],
                     ],
-                    'issueDate' => [
-                        'issueDate' => $params->passportIssueDate,
-                        'expirationDate' => $params->passportExpirationDate,
-                    ]
-                ],
-                'birthDate' => [
-                    'dateTimeDescription' => [
-                        'dateTimeQualifier' => 'BIR',
-                        'dateTimeDetails' => $params->birthDate,
+                    'addressInfo' => [
+                        'addressQualifier' => [
+                            'address' => 'PAX',
+                        ],
+                        'addressDetails' => [
+                            'addressLine1' => $traveller->addressLine1,
+                            'addressLine2' => $traveller->addressLine2,
+                        ],
+                        'cityName' => $traveller->addressCity,
                     ],
-                ],
-                'addressInfo' => [
-                    'addressQualifier' => [
-                        'address' => 'PAX',
+                    'fareCode' => [
+                        'fareCodeId' => [
+                            'cruiseFareCode' => $params->fareCode,
+                        ],
                     ],
-                    'addressDetails' => [
-                        'addressLine1' => $params->addressLine1,
-                        'addressLine2' => $params->addressLine2,
-                    ],
-                    'cityName' => $params->addressCity,
-                ],
-                'fareCode' => [
-                    'fareCodeId' => [
-                        'cruiseFareCode' => $params->fareCode,
-                    ],
-                ],
-            ],
+                ];
+            }, $params->travellers),
         ];
 
         $this->diningGroup = [
@@ -150,11 +150,13 @@ class CreateBooking extends BaseCruiseMessage
                     'diningStatus' => $params->diningStatus,
                 ],
             ],
-            'diningAssociation' => [
-                'travellerId' => [
-                    'lastName' => $referenceNbr,
-                ],
-            ],
+            'diningAssociation' => array_map(function($traveller){
+                return [
+                    'travellerId' => [
+                        'lastName' => $traveller->referenceNbr,
+                    ],
+                ];
+            }, $params->travellers),
         ];
 
         $this->insuranceGroup = [
@@ -165,11 +167,13 @@ class CreateBooking extends BaseCruiseMessage
                     ];
                 }, $params->insuranceCodes),
             ],
-            'insuranceAssociation' => [
-                'travellerId' => [
-                    'lastName' => $referenceNbr,
-                ],
-            ],
+            'insuranceAssociation' => array_map(function($traveller) {
+                return [
+                    'travellerId' => [
+                        'lastName' => $traveller->referenceNbr,
+                    ],
+                ];
+            }, $params->travellers),
         ];
     }
 
