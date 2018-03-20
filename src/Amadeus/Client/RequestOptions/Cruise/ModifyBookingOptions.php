@@ -17,4 +17,6 @@ class ModifyBookingOptions extends CreateBookingOptions
 
     public $referenceType;
     public $uniqueReference;
+    public $bookingQualifierValue;
+    public $bookingQualifierStatus;
 }

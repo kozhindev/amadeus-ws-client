@@ -27,14 +27,8 @@ class RequestCabinAvailability extends BaseCruiseMessage
 
         $this->numberOfUnitsDescription = [
             'nbrOfUnitsDetails' => [
-                [
-                    'unitValue' => $params->numberOfUnits,
-                    'unitQualifier' => 'NI',
-                ],
-                [
-                    'unitValue' => 2,
-                    'unitQualifier' => 'PA',
-                ],
+                'unitValue' => $params->numberOfUnits,
+                'unitQualifier' => 'NI',
             ]
         ];
 

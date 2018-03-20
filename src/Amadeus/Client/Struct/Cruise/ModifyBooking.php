@@ -38,7 +38,8 @@ class ModifyBooking extends CreateBooking
             [
                 'partyQualifier' => 1,
                 'itemDescription' => [
-                    'value' => $params->recordLocator,
+                    'value' => $params->bookingQualifierValue,
+                    'status' => $params->bookingQualifierStatus,
                 ],
             ]
         ];

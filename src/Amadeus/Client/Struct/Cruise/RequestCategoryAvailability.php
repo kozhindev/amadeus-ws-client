@@ -31,10 +31,6 @@ class RequestCategoryAvailability extends BaseCruiseMessage
                     'unitValue' => $params->numberOfUnits,
                     'unitQualifier' => 'NI',
                 ],
-                [
-                    'unitValue' => 2,
-                    'unitQualifier' => 'PA',
-                ],
             ]
         ];
 

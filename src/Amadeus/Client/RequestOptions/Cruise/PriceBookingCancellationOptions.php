@@ -23,4 +23,7 @@ class PriceBookingCancellationOptions extends CruiseBaseOptions
      * @var string
      */
     public $recordLocator;
+
+    public $bookingQualifierValue;
+    public $bookingQualifierStatus;
 }

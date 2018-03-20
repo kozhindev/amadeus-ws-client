@@ -26,4 +26,7 @@ class CancelBookingOptions extends CruiseBaseOptions
     public $currencyQualifier;
 
     public $currencyIsoCode;
+
+    public $bookingQualifierValue;
+    public $bookingQualifierStatus;
 }

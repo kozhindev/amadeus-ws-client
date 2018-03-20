@@ -7,7 +7,7 @@ use Amadeus\Client\RequestOptions\Cruise\PriceBookingOptions;
 
 class PriceBooking extends BaseCruiseMessage
 {
-    public $numberOfUnitsDescription;
+    public $nbrOfGuests;
 
     public $sailingGroup;
 
@@ -20,7 +20,7 @@ class PriceBooking extends BaseCruiseMessage
     {
         parent::__construct($params);
 
-        $this->numberOfUnitsDescription = [
+        $this->nbrOfGuests = [
             'nbrOfUnitsDetails' => [
                 'unitValue' => $params->numberOfUnits,
                 'unitQualifier' => 'NI',

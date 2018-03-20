@@ -33,12 +33,6 @@ class CancelBooking extends BaseCruiseMessage
                     'componentDescription' => 'M',
                 ],
             ],
-            [
-                'partyQualifier' => 1,
-                'itemDescription' => [
-                    'value' => $params->recordLocator,
-                ],
-            ],
         ];
 
         $this->sailingGroup = [
