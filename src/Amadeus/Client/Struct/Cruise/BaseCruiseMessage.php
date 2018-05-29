@@ -8,7 +8,8 @@ use Amadeus\Client\Struct\BaseWsMessage;
 class BaseCruiseMessage extends BaseWsMessage
 {
     public $agentEnvironment;
-
+    public const CHILD_AGE = 10;
+    public const GROWN_AGE = 35;
 
     /**
      * @param CruiseBaseOptions $params

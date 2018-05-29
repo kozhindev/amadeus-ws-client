@@ -11,5 +11,6 @@ class RequestSailingAvailabilityOptions extends CruiseBaseOptions
 
     public $date;
 
-    public $numberOfUnits;
+    public $numberOfGuests;
+    public $numberOfChildren;
 }

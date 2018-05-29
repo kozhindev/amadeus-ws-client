@@ -15,9 +15,8 @@ class HoldCabinOptions extends CruiseBaseOptions
 
     public $duration;
 
-
-    public $numberOfUnits;
-
+    public $numberOfGuests;
+    public $numberOfChildren;
 
     public $currencyQualifier;
 

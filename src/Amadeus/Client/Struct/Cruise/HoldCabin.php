@@ -21,10 +21,21 @@ class HoldCabin extends BaseCruiseMessage
         parent::__construct($params);
 
         $this->numberOfUnitsDescription = [
-            'nbrOfUnitsDetails' => [
-                'unitValue' => $params->numberOfUnits,
-                'unitQualifier' => 'NI',
-            ],
+            'nbrOfUnitsDetails' =>
+                array_merge(
+                    [[
+                        'unitValue' => $params->numberOfGuests + $params->numberOfChildren,
+                        'unitQualifier' => 'NI',
+                    ]],
+                    array_fill(0, $params->numberOfGuests, [
+                        'unitValue' => static::GROWN_AGE,
+                        'unitQualifier' => 'AG',
+                    ]),
+                    array_fill(0, $params->numberOfChildren, [
+                        'unitValue' => static::CHILD_AGE,
+                        'unitQualifier' => 'AG',
+                    ])
+                )
         ];
 
         $this->sailingGroup = [
